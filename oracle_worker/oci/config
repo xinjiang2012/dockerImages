@@ -1,0 +1,6 @@
+[DEFAULT]
+user=ocid1.user.region1..aaaaaaaapiezefb55b6ookbd7vu7pupg5cyexhpez6srsriiwirhrm25zv3a
+fingerprint=e4:c1:e9:47:17:59:a1:2d:d8:c3:06:d9:74:e5:7a:64
+key_file=~/.oci/oci_api_key.pem
+tenancy=ocid1.tenancy.region1..aaaaaaaaidvqfno2pn2y45ffocxc7trpqxjtadlxcas4mccdpjn2g4s42fuq
+region=r1.oracleiaas.com

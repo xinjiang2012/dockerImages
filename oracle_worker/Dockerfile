@@ -1,7 +1,7 @@
 FROM oraclelinux:7.5
 LABEL MAINTAINER="xin_jiang@outlook.com"
 
-ENV REFRESHED_AT="2018-05-12 16:00"
+ENV REFRESHED_AT="2018-05-12 17:56"
 
 ENV http_proxy=http://cn-proxy.jp.oracle.com:80
 ENV https_proxy=http://cn-proxy.jp.oracle.com:80
@@ -14,8 +14,9 @@ RUN python get-pip.py
 #Install OCI CLI  
 RUN pip install oci-cli
 
+#OCI config files
+COPY oci /root/.oci/
+ENV REQUESTS_CA_BUNDLE=/root/.oci/combined_r1.crt
+
 #RUN curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -
 #RUN yum install -y -q nodejs
-
-
-

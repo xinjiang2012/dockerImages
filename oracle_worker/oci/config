@@ -1,6 +1,13 @@
 [DEFAULT]
-user=ocid1.user.region1..aaaaaaaapiezefb55b6ookbd7vu7pupg5cyexhpez6srsriiwirhrm25zv3a
 fingerprint=e4:c1:e9:47:17:59:a1:2d:d8:c3:06:d9:74:e5:7a:64
 key_file=~/.oci/oci_api_key.pem
+
+[R1_ST]
+user=ocid1.user.region1..aaaaaaaapiezefb55b6ookbd7vu7pupg5cyexhpez6srsriiwirhrm25zv3a
 tenancy=ocid1.tenancy.region1..aaaaaaaaidvqfno2pn2y45ffocxc7trpqxjtadlxcas4mccdpjn2g4s42fuq
 region=r1.oracleiaas.com
+
+[R2_ST]
+user=ocid1.user.oc1..aaaaaaaauekilybn64fatpq7xuyw7q4uwug2kofzplzykwtdnrhruzbwnfrq
+tenancy=ocid1.tenancy.oc1..aaaaaaaam572q3moqncjwwi33v4sznvb2wr2qqr6iqc3yjjzrcy3vhpflvsa
+region=us-ashburn-1

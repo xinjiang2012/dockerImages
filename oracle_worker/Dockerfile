@@ -16,7 +16,11 @@ RUN pip install oci-cli
 
 #OCI config files
 COPY oci /root/.oci/
-ENV REQUESTS_CA_BUNDLE=/root/.oci/combined_r1.crt
+#ENV REQUESTS_CA_BUNDLE=/root/.oci/combined_r1.crt
+
+#Set alias for OCI cli
+RUN echo 'alias ocir1="oci --cert-bundle '/root/.oci/combined_r1.crt'"' >> ~/.bash_aliases
+RUN echo ". ~/.bash_aliases" >> ~/.bashrc
 
 #RUN curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -
 #RUN yum install -y -q nodejs

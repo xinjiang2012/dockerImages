@@ -20,7 +20,22 @@ COPY oci /root/.oci/
 
 #Set alias for OCI cli
 RUN echo 'alias ocir1="oci --cert-bundle '/root/.oci/combined_r1.crt'"' >> ~/.bash_aliases
+RUN echo 'alias ocir2mt="oci --profile R2_MT"' >> ~/.bash_aliases
+RUN echo 'alias ocir2st="oci --profile R2_ST"' >> ~/.bash_aliases
 RUN echo ". ~/.bash_aliases" >> ~/.bashrc
 
+
+#Install supervisor
+RUN mkdir -p /tmp/downloads
+RUN cd /tmp/downloads && \
+    curl https://bootstrap.pypa.io/ez_setup.py -O  | python && \
+    easy_install supervisor
+COPY supervisord.conf /root/
+
+ 
+#CMD ["/usr/bin/supervisord", "-c","/root/supervisord.conf"]
+    
 #RUN curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -
 #RUN yum install -y -q nodejs
+
+WORKDIR /root

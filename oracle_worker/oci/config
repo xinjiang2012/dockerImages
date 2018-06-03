@@ -11,3 +11,8 @@ region=r1.oracleiaas.com
 user=ocid1.user.oc1..aaaaaaaauekilybn64fatpq7xuyw7q4uwug2kofzplzykwtdnrhruzbwnfrq
 tenancy=ocid1.tenancy.oc1..aaaaaaaam572q3moqncjwwi33v4sznvb2wr2qqr6iqc3yjjzrcy3vhpflvsa
 region=us-ashburn-1
+
+[R2_MT]
+user=ocid1.user.oc1..aaaaaaaa3dkcz36amfjdsweyis5aftmueqhjyctcigktwy2azf62tk2mehrq
+tenancy=ocid1.tenancy.oc1..aaaaaaaam572q3moqncjwwi33v4sznvb2wr2qqr6iqc3yjjzrcy3vhpflvsa
+region=us-ashburn-1

@@ -8,8 +8,8 @@ tenancy=ocid1.tenancy.region1..aaaaaaaaidvqfno2pn2y45ffocxc7trpqxjtadlxcas4mccdp
 region=r1.oracleiaas.com
 
 [R2_ST]
-user=ocid1.user.oc1..aaaaaaaauekilybn64fatpq7xuyw7q4uwug2kofzplzykwtdnrhruzbwnfrq
-tenancy=ocid1.tenancy.oc1..aaaaaaaam572q3moqncjwwi33v4sznvb2wr2qqr6iqc3yjjzrcy3vhpflvsa
+user=ocid1.user.oc1..aaaaaaaadclnjqa3yl7xr7jypikdce3bybf4v35a6oba7sai4stchaqslhoa
+tenancy=ocid1.tenancy.oc1..aaaaaaaanynyvgkcoec67zjm73hektj3u6cbrfcfut5phzdrz4fwvurxxona
 region=us-ashburn-1
 
 [R2_MT]

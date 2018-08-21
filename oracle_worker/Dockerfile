@@ -1,7 +1,7 @@
 FROM oraclelinux:7.5
 LABEL MAINTAINER="xin_jiang@outlook.com"
 
-ENV REFRESHED_AT="2018-05-12 17:56"
+ENV REFRESHED_AT="2018-08-21 16:08"
 
 ENV http_proxy=http://cn-proxy.jp.oracle.com:80
 ENV https_proxy=http://cn-proxy.jp.oracle.com:80
@@ -14,15 +14,16 @@ RUN python get-pip.py
 #Install OCI CLI  
 RUN pip install oci-cli
 
-#OCI config files
+#Configure OCI config files
 COPY oci /root/.oci/
 RUN chmod 600 /root/.oci/*
 #ENV REQUESTS_CA_BUNDLE=/root/.oci/combined_r1.crt
 
 #Set alias for OCI cli
 RUN echo 'alias ocir1st="oci --cert-bundle '/root/.oci/combined_r1.crt' --profile R1_ST"' >> ~/.bash_aliases && \
+    echo 'alias ocir1mt="oci --cert-bundle '/root/.oci/combined_r1.crt' --profile R1_MT"' >> ~/.bash_aliases && \
     echo 'alias ocir2mt="oci --profile R2_MT"' >> ~/.bash_aliases && \
-    echo 'alias ocir2st="oci --profile R2_ST"' >> ~/.bash_aliases && \
+    echo 'alias ocir2st="oci --profile R2_ST"' >> ~/.bash_aliases && \'
     echo ". ~/.bash_aliases" >> ~/.bashrc
 
 

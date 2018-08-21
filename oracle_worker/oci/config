@@ -7,6 +7,11 @@ user=ocid1.user.region1..aaaaaaaapiezefb55b6ookbd7vu7pupg5cyexhpez6srsriiwirhrm2
 tenancy=ocid1.tenancy.region1..aaaaaaaaidvqfno2pn2y45ffocxc7trpqxjtadlxcas4mccdpjn2g4s42fuq
 region=r1.oracleiaas.com
 
+[R1_MT]
+user=ocid1.user.region1..aaaaaaaamngp3knnpmnseaoco67pc2lgrphev55nqzqwuktq6332vu2g7v6q
+tenancy=ocid1.tenancy.region1..aaaaaaaalkl3xsz2ytdqeqcokbyloskocu3pr6pccblp6i4iqwuv33kdnbdq
+region=r1.oracleiaas.com
+
 [R2_ST]
 user=ocid1.user.oc1..aaaaaaaadclnjqa3yl7xr7jypikdce3bybf4v35a6oba7sai4stchaqslhoa
 tenancy=ocid1.tenancy.oc1..aaaaaaaanynyvgkcoec67zjm73hektj3u6cbrfcfut5phzdrz4fwvurxxona

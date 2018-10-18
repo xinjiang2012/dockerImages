@@ -1,0 +1,46 @@
+FROM oraclelinux
+
+LABEL MAINTAINER="xin_jiang@outlook.com"
+
+# Install redis
+ENV REDIS_VERSION 4.0.11
+ENV REDIS_DOWNLOAD_URL http://download.redis.io/releases/redis-4.0.11.tar.gz
+ENV REDIS_DOWNLOAD_SHA fc53e73ae7586bcdacb4b63875d1ff04f68c5474c1ddeda78f00e5ae2eed1bbb
+
+# for redis-sentinel see: http://redis.io/topics/sentinel
+RUN	yum install -y wget make gcc gcc-c++ kernel-devel && \
+	rm -rf /var/cache/yum && \
+    yum clean all
+RUN wget -O redis.tar.gz "$REDIS_DOWNLOAD_URL" && \
+	echo "$REDIS_DOWNLOAD_SHA *redis.tar.gz" | sha256sum -c - && \
+	mkdir -p /usr/src/redis && \
+	tar -xzf redis.tar.gz -C /usr/src/redis --strip-components=1 && \
+	rm redis.tar.gz && \
+# disable Redis protected mode [1] as it is unnecessary in context of Docker
+# (ports are not automatically exposed when running inside Docker, but rather explicitly by specifying -p / -P)
+# [1]: https://github.com/antirez/redis/commit/edd4d555df57dc84265fdfb4ef59a4678832f6da
+	grep -q '^#define CONFIG_DEFAULT_PROTECTED_MODE 1$' /usr/src/redis/src/server.h; \
+	sed -ri 's!^(#define CONFIG_DEFAULT_PROTECTED_MODE) 1$!\1 0!' /usr/src/redis/src/server.h; \
+	grep -q '^#define CONFIG_DEFAULT_PROTECTED_MODE 0$' /usr/src/redis/src/server.h; \
+# for future reference, we modify this directly in the source instead of just supplying a default configuration flag because apparently "if you specify any argument to redis-server, [it assumes] you are going to specify everything"
+# see also https://github.com/docker-library/redis/issues/4#issuecomment-50780840
+# (more exactly, this makes sure the default behavior of "save on SIGTERM" stays functional by default)
+	\
+	make -C /usr/src/redis -j "$(nproc)"; \
+	make -C /usr/src/redis install; \
+	rm -r /usr/src/redis;
+COPY /config/redis.conf /etc/
+# data directory is to store redis data file
+RUN mkdir /data
+
+#Install supervisor and copy config files
+RUN cd  && \
+    wget https://bootstrap.pypa.io/ez_setup.py -O - | python && \
+    easy_install supervisor
+
+RUN mkdir -p /etc/supervisor/conf.d
+COPY /config/supervisord.conf /etc/supervisor/
+COPY /config/supervisord-redis.conf /etc/supervisor/conf.d/
+
+EXPOSE 6379
+CMD [ "/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf" ]

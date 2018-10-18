@@ -2,15 +2,10 @@ FROM oraclelinux:7.5
 
 LABEL MAINTAINER="xin_jiang@outlook.com"
 
-# install jdk
-ENV JAVA_PKG=server-jre-8u*-linux-x64.tar.gz \
-    JAVA_HOME=/usr/java/default
+RUN mkdir /tmp/downloads
+COPY /resources/jdk-8u144-linux-x64.rpm /tmp/downloads
+RUN cd /tmp/downloads && \
+    yum install -y jdk-8u144-linux-x64.rpm && \
+    rm -f jdk-8u144-linux-x64.rpm && yum clean all
 
-ADD $JAVA_PKG /usr/java/
-
-RUN export JAVA_DIR=$(ls -1 -d /usr/java/*) && \
-    ln -s $JAVA_DIR /usr/java/latest && \
-    ln -s $JAVA_DIR /usr/java/default && \
-    alternatives --install /usr/bin/java java $JAVA_DIR/bin/java 20000 && \
-    alternatives --install /usr/bin/javac javac $JAVA_DIR/bin/javac 20000 && \
-    alternatives --install /usr/bin/jar jar $JAVA_DIR/bin/jar 20000
+RUN echo -e 'export JAVA_HOME=/usr/java/jdk1.8.0_144\nexport PATH=${JAVA_HOME}/bin:$PATH\nexport CLASSPATH=$JAVA_HOME/lib/tools.jar' >> /etc/profile
